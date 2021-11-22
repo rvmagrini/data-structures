@@ -1,8 +1,6 @@
 # Data Structures
 ## Basic Tutorial for Data Structures
 
-## Process:
-
 ### 1: [SINGLY LINKED LIST]
 TASKS:
 - [1.1] Implement LinkedList with print and length functionalities
