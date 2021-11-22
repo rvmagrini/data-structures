@@ -43,6 +43,50 @@ public class SinglyLinkedList<T> {
 	}
 	
 	
+	public void insertAtTheBeginning(T data) {
+		ListNode<T> newNode = new ListNode<>(data);
+		newNode.next = head;
+		head = newNode;
+	}
+	
+	
+	public void insertAtTheEnd(T data) {
+		ListNode<T> newNode = new ListNode<>(data);
+		
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		
+		ListNode<T> currentItem = head;
+		while (currentItem.next != null) {
+			currentItem = currentItem.next;
+		}
+		currentItem.next = newNode;
+	}
+	
+	
+	public void insertAt(int position, T data) {
+		ListNode<T> newNode = new ListNode<>(data);
+		
+		if (position == 1) {
+			newNode.next = head;
+			head = newNode;
+		} else {
+			ListNode<T> previousItem = head;
+			int previousPosition = 1;
+			while (previousPosition < position-1) {
+				previousItem = previousItem.next;
+				previousPosition++;
+			}
+			ListNode<T> currentItem = previousItem.next;
+			newNode.next = currentItem;
+			previousItem.next = newNode;
+		}
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		
 		SinglyLinkedList<Integer> singlyIntLinkedList = new SinglyLinkedList<Integer>();
@@ -57,11 +101,25 @@ public class SinglyLinkedList<T> {
 		second.next = third;
 		third.next = fourth;
 		
-		//Print
+		// Print
 		singlyIntLinkedList.printList();
 		
 		// Length
 		System.out.println("Length: " + singlyIntLinkedList.length());
+		
+		// Insert at the beginning
+		singlyIntLinkedList.insertAtTheBeginning(15);
+		singlyIntLinkedList.insertAtTheBeginning(87);
+		singlyIntLinkedList.printList();
+		
+		// Insert at the end
+		singlyIntLinkedList.insertAtTheEnd(14);
+		singlyIntLinkedList.insertAtTheEnd(77);
+		singlyIntLinkedList.printList();
+		
+		// Insert at position
+		singlyIntLinkedList.insertAt(3, 7);
+		singlyIntLinkedList.printList();
 
     }
 }
