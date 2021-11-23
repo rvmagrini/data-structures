@@ -215,6 +215,24 @@ public class SinglyLinkedList<T> {
 	}
 	
 	
+	public void reverse() {
+		if (head == null) {
+			return;
+		}
+		
+		ListNode<T> currentItem = head;
+		ListNode<T> newHead = null;
+		ListNode<T> nextItem = null;
+		while (currentItem != null) {
+			nextItem = currentItem.next;
+			currentItem.next = newHead;
+			newHead = currentItem;
+			currentItem = nextItem;
+		}
+		head = newHead;
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {
@@ -284,7 +302,12 @@ public class SinglyLinkedList<T> {
 		System.out.println("Middle node when length is even: " + singlyIntLinkedList.getMiddleNode().data);
 			
 		// Get Nth node from the end of the list
-		System.out.println("Get 5th item from the end of the list: " + singlyIntLinkedList.getNthNodeFromEnd(5).data);
+		System.out.println("5th item from the end of the list: " + singlyIntLinkedList.getNthNodeFromEnd(5).data);
+		
+		// Reverse List
+		System.out.println("Reversed list:");
+		singlyIntLinkedList.reverse();
+		singlyIntLinkedList.printList();
 
 
     }
