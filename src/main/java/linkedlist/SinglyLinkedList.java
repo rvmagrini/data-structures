@@ -153,6 +153,68 @@ public class SinglyLinkedList<T> {
 	}
 	
 	
+	public boolean contains(T data) {
+		if (head == null) {
+			return false;
+		}
+		
+		ListNode<T> currentItem = head;
+		while (currentItem != null) {
+			if (currentItem.data == data) {
+				return true;
+			}
+			currentItem = currentItem.next;
+		}
+		
+		return false;
+	}
+	
+	
+	public ListNode<T> getMiddleNode() {
+		if (head == null) {
+			return null;
+		}
+		
+		ListNode<T> slowPointer = head;
+		ListNode<T> fastPointer = head;
+		while (fastPointer != null && fastPointer.next != null) {
+			slowPointer = slowPointer.next;
+			fastPointer = fastPointer.next.next;
+		}
+		return slowPointer;
+	}
+	
+	
+	public ListNode<T> getNthNodeFromEnd(int n) {
+		if (head == null) {
+			return null;
+		}
+		
+		if (n <= 0) {
+			throw new IllegalArgumentException("Invalid value");
+		}
+		
+		ListNode<T> mainPointer = head;
+		ListNode<T> refPointer = head;
+		int counter = 0;
+		
+		while (counter < n) {
+			if (refPointer == null) {
+				throw new IllegalArgumentException(n + " is greater than the number of nodes in list");
+			}
+			refPointer = refPointer.next;
+			counter++;
+		}
+		
+		while (refPointer != null) {
+			refPointer = refPointer.next;
+			mainPointer = mainPointer.next;
+		}
+		
+		return mainPointer;
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {
@@ -207,6 +269,23 @@ public class SinglyLinkedList<T> {
 		// Delete node with given value
 		System.out.println("Deleted node with value: " + singlyIntLinkedList.deleteNode(8).data);
 		singlyIntLinkedList.printList();
+		
+		// Contains
+		System.out.print("Contains 11: ");
+		System.out.println(singlyIntLinkedList.contains(11));
+		System.out.print("Contains 55: ");
+		System.out.println(singlyIntLinkedList.contains(55));
+		
+		// Get middle node
+		System.out.println("Middle node when length is odd: " + singlyIntLinkedList.getMiddleNode().data);
+		System.out.println("Inserted 20 at the beginning:");
+		singlyIntLinkedList.insertAtTheBeginning(20);
+		singlyIntLinkedList.printList();
+		System.out.println("Middle node when length is even: " + singlyIntLinkedList.getMiddleNode().data);
+			
+		// Get Nth node from the end of the list
+		System.out.println("Get 5th item from the end of the list: " + singlyIntLinkedList.getNthNodeFromEnd(5).data);
+
 
     }
 }
