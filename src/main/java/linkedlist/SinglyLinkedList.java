@@ -249,7 +249,7 @@ public class SinglyLinkedList<T> {
 	}
 	
 	
-	public boolean containsLoop() {
+	public ListNode<T> containsLoop() {
 		ListNode<T> fastPointer = head;
 		ListNode<T> slowPointer = head;
 		
@@ -258,11 +258,12 @@ public class SinglyLinkedList<T> {
 			slowPointer = slowPointer.next;
 			
 			if (slowPointer == fastPointer) {
-				getFirstNodeOfTheLoop(slowPointer);
-				return true;
+				System.out.println("This List has a loop and its first node is -> " + getFirstNodeOfTheLoop(slowPointer).data);
+				return slowPointer;
 			}
 		}
-		return false;
+		System.out.println("This List does not have a loop");
+		return null;
 	}
 	
 	
@@ -274,8 +275,18 @@ public class SinglyLinkedList<T> {
 			slowPointer = slowPointer.next;
 		}
 		
-		System.out.println("First node of the loop is: " + firstLoopNodePointer.data);
 		return firstLoopNodePointer;
+	}
+	
+	
+	public void removeLoop(ListNode<T> slowPointer) {
+		ListNode<T> pointer = head;
+		
+		while (slowPointer.next != pointer.next) {
+			pointer = pointer.next;
+			slowPointer = slowPointer.next;
+		}
+		slowPointer.next = null;
 	}
 	
 	
@@ -390,13 +401,21 @@ public class SinglyLinkedList<T> {
 		three.next = four;
 		four.next = five;
 		five.next = six;
-		six.next = two;
+		six.next = two; // loop
 		
-		// Contains loop and get first node of the loop
+		// Contains loop & Get first node of the loop
 		System.out.println("Contains loop:");
-		System.out.println("Singly LinkedList: " + singlyIntLinkedList.containsLoop());
-		System.out.println("Sorted LinkedList: " + sortedLinkedList.containsLoop());
-		System.out.println("Singly LinkedList with Loop: " + loopLinkedList.containsLoop());
+		System.out.print("Singly LinkedList: ");
+		singlyIntLinkedList.containsLoop();
+		System.out.print("Sorted LinkedList: ");
+		sortedLinkedList.containsLoop();
+		System.out.print("Singly LinkedList with Loop: ");
+		loopLinkedList.containsLoop();
+		
+		// Remove Loop
+		loopLinkedList.removeLoop(loopLinkedList.containsLoop());
+		System.out.println("Loop removed: ");
+		loopLinkedList.printList();
 	
 
     }
