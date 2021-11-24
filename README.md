@@ -11,3 +11,7 @@ TASKS:
 - [1.6] Implement Sorted LinkedList with remotion of duplication functionality
 - [1.7] Implement LinkedList containing loop, loop detector and finder of the first node of the loop (using Floyd's Cycle Detection Algorithm)
 - [1.8] Implement remove loop functionality
+
+### 1: [DOUBLY LINKED LIST]
+TASKS:
+- [2.1] Implement Doubly LinkedList with length, isEmpty and print functionalities
