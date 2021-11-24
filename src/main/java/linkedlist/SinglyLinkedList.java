@@ -249,6 +249,36 @@ public class SinglyLinkedList<T> {
 	}
 	
 	
+	public boolean containsLoop() {
+		ListNode<T> fastPointer = head;
+		ListNode<T> slowPointer = head;
+		
+		while (fastPointer != null && fastPointer.next != null) {
+			fastPointer = fastPointer.next.next;
+			slowPointer = slowPointer.next;
+			
+			if (slowPointer == fastPointer) {
+				getFirstNodeOfTheLoop(slowPointer);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	public ListNode<T> getFirstNodeOfTheLoop(ListNode<T> slowPointer) {
+		ListNode<T> firstLoopNodePointer = head;
+		
+		while (slowPointer != firstLoopNodePointer) {
+			firstLoopNodePointer = firstLoopNodePointer.next;
+			slowPointer = slowPointer.next;
+		}
+		
+		System.out.println("First node of the loop is: " + firstLoopNodePointer.data);
+		return firstLoopNodePointer;
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {
@@ -343,7 +373,31 @@ public class SinglyLinkedList<T> {
 		sortedLinkedList.removeDuplicationFromSortedList(sortedLinkedList);
 		System.out.println("Removed duplication:");
 		sortedLinkedList.printList();
-
+		
+		// ===========================
+		// Singly LinkedList with Loop
+		System.out.println("========================");
+		System.out.println("Singly LinkedList with Loop");
+		SinglyLinkedList<Integer> loopLinkedList = new SinglyLinkedList<Integer>();
+		loopLinkedList.head = new ListNode<Integer>(1);
+		ListNode<Integer> two = new ListNode<>(2);
+		ListNode<Integer> three = new ListNode<>(3);
+		ListNode<Integer> four = new ListNode<>(4);
+		ListNode<Integer> five = new ListNode<>(5);
+		ListNode<Integer> six = new ListNode<>(6);
+		loopLinkedList.head.next = two;
+		two.next = three;
+		three.next = four;
+		four.next = five;
+		five.next = six;
+		six.next = two;
+		
+		// Contains loop and get first node of the loop
+		System.out.println("Contains loop:");
+		System.out.println("Singly LinkedList: " + singlyIntLinkedList.containsLoop());
+		System.out.println("Sorted LinkedList: " + sortedLinkedList.containsLoop());
+		System.out.println("Singly LinkedList with Loop: " + loopLinkedList.containsLoop());
+	
 
     }
 }

@@ -9,3 +9,5 @@ TASKS:
 - [1.4] Implement contains, get Middle node and get Nth node from the End of the list
 - [1.5] Implement reverse functionality
 - [1.6] Implement Sorted LinkedList with remotion of duplication functionality
+- [1.7] Implement LinkedList containing loop, loop detector and finder of the first node of the loop (using Floyd's Cycle Detection Algorithm)
+ 
