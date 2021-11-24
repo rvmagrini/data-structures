@@ -233,6 +233,23 @@ public class SinglyLinkedList<T> {
 	}
 	
 	
+	public void removeDuplicationFromSortedList(SinglyLinkedList<T> sortedList) {
+		if (sortedList.head == null) {
+			return;
+		}
+		
+		ListNode<T> currentNode = sortedList.head;
+		while (currentNode != null && currentNode.next != null) {
+			if (currentNode.data == currentNode.next.data) {
+				currentNode.next = currentNode.next.next;
+			} else {
+				currentNode = currentNode.next;
+			}
+		}
+	}
+	
+	
+	
 	
 	public static void main(String[] args) {
 		
@@ -308,6 +325,24 @@ public class SinglyLinkedList<T> {
 		System.out.println("Reversed list:");
 		singlyIntLinkedList.reverse();
 		singlyIntLinkedList.printList();
+		
+		// ========================
+		// Sorted Singly LinkedList
+		System.out.println("========================");
+		System.out.println("Sorted Singly LinkedList");
+		SinglyLinkedList<Integer> sortedLinkedList = new SinglyLinkedList<Integer>();
+		sortedLinkedList.insertAtTheEnd(1);
+		sortedLinkedList.insertAtTheEnd(1);
+		sortedLinkedList.insertAtTheEnd(2);
+		sortedLinkedList.insertAtTheEnd(3);
+		sortedLinkedList.insertAtTheEnd(3);
+		sortedLinkedList.insertAtTheEnd(4);
+		sortedLinkedList.printList();
+		
+		// Removing duplication
+		sortedLinkedList.removeDuplicationFromSortedList(sortedLinkedList);
+		System.out.println("Removed duplication:");
+		sortedLinkedList.printList();
 
 
     }
