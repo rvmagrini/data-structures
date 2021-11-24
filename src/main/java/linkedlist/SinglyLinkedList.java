@@ -17,10 +17,10 @@ public class SinglyLinkedList<T> {
 	
 	
 	public void printList() {
-		ListNode<T> currentItem = head;
-		while (currentItem != null) {
-			System.out.print(currentItem.data + " -> ");
-			currentItem = currentItem.next;
+		ListNode<T> currentNode = head;
+		while (currentNode != null) {
+			System.out.print(currentNode.data + " -> ");
+			currentNode = currentNode.next;
 		}
 		System.out.println("null");
 	}
@@ -32,10 +32,10 @@ public class SinglyLinkedList<T> {
 		}
 		
 		int length = 0;
-		ListNode<T> currentItem = head;
-		while (currentItem != null) {
+		ListNode<T> currentNode = head;
+		while (currentNode != null) {
 			length++;
-			currentItem = currentItem.next;
+			currentNode = currentNode.next;
 		}
 		
 		return length;
@@ -57,11 +57,11 @@ public class SinglyLinkedList<T> {
 			return;
 		}
 		
-		ListNode<T> currentItem = head;
-		while (currentItem.next != null) {
-			currentItem = currentItem.next;
+		ListNode<T> currentNode = head;
+		while (currentNode.next != null) {
+			currentNode = currentNode.next;
 		}
-		currentItem.next = newNode;
+		currentNode.next = newNode;
 	}
 	
 	
@@ -72,15 +72,15 @@ public class SinglyLinkedList<T> {
 			newNode.next = head;
 			head = newNode;
 		} else {
-			ListNode<T> previousItem = head;
+			ListNode<T> previousNode = head;
 			int previousPosition = 1;
 			while (previousPosition < position-1) {
-				previousItem = previousItem.next;
+				previousNode = previousNode.next;
 				previousPosition++;
 			}
-			ListNode<T> currentItem = previousItem.next;
-			newNode.next = currentItem;
-			previousItem.next = newNode;
+			ListNode<T> currentNode = previousNode.next;
+			newNode.next = currentNode;
+			previousNode.next = newNode;
 		}
 	}
 	
@@ -103,12 +103,12 @@ public class SinglyLinkedList<T> {
 		}
 		
 		ListNode<T> deletePointer = head;
-		ListNode<T> previousItem = null;
+		ListNode<T> previousNode = null;
 		while (deletePointer.next != null) {
-			previousItem = deletePointer;
+			previousNode = deletePointer;
 			deletePointer = deletePointer.next;
 		}
-		previousItem.next = null;
+		previousNode.next = null;
 		return deletePointer;
 	}
 	
@@ -117,14 +117,14 @@ public class SinglyLinkedList<T> {
 		if (position == 1) {
 			return deleteFirstNode();
 		} else {
-			ListNode<T> previousItem = head;
+			ListNode<T> previousNode = head;
 			int previousPosition = 1;
 			while (previousPosition < position-1) {
-				previousItem = previousItem.next;
+				previousNode = previousNode.next;
 				previousPosition++;
 			}
-			ListNode<T> deletePointer = previousItem.next;
-			previousItem.next = deletePointer.next;
+			ListNode<T> deletePointer = previousNode.next;
+			previousNode.next = deletePointer.next;
 			return deletePointer;
 		}
 	}
@@ -132,7 +132,7 @@ public class SinglyLinkedList<T> {
 	
 	public ListNode<T> deleteNode(T data) {
 		ListNode<T> deletePointer = head;
-		ListNode<T> previousItem = null;
+		ListNode<T> previousNode = null;
 		
 		if (deletePointer != null && deletePointer.data == data) {
 			head = deletePointer.next;
@@ -140,7 +140,7 @@ public class SinglyLinkedList<T> {
 		}
 		
 		while (deletePointer != null && deletePointer.data != data) {
-			previousItem = deletePointer;
+			previousNode = deletePointer;
 			deletePointer = deletePointer.next;
 		}
 		
@@ -148,7 +148,7 @@ public class SinglyLinkedList<T> {
 			return null;
 		}
 		
-		previousItem.next = deletePointer.next;
+		previousNode.next = deletePointer.next;
 		return deletePointer;
 	}
 	
@@ -158,12 +158,12 @@ public class SinglyLinkedList<T> {
 			return false;
 		}
 		
-		ListNode<T> currentItem = head;
-		while (currentItem != null) {
-			if (currentItem.data == data) {
+		ListNode<T> currentNode = head;
+		while (currentNode != null) {
+			if (currentNode.data == data) {
 				return true;
 			}
-			currentItem = currentItem.next;
+			currentNode = currentNode.next;
 		}
 		
 		return false;
@@ -220,29 +220,29 @@ public class SinglyLinkedList<T> {
 			return;
 		}
 		
-		ListNode<T> currentItem = head;
+		ListNode<T> currentNode = head;
 		ListNode<T> newHead = null;
-		ListNode<T> nextItem = null;
-		while (currentItem != null) {
-			nextItem = currentItem.next;
-			currentItem.next = newHead;
-			newHead = currentItem;
-			currentItem = nextItem;
+		ListNode<T> nextNode = null;
+		while (currentNode != null) {
+			nextNode = currentNode.next;
+			currentNode.next = newHead;
+			newHead = currentNode;
+			currentNode = nextNode;
 		}
 		head = newHead;
 	}
 	
 	
 	
-	
 	public static void main(String[] args) {
 		
+		// Singly LinkedList
+		System.out.println("Singly LinkedList");
 		SinglyLinkedList<Integer> singlyIntLinkedList = new SinglyLinkedList<Integer>();
 		singlyIntLinkedList.head = new ListNode<Integer>(10);
 		ListNode<Integer> second = new ListNode<Integer>(1);
 		ListNode<Integer> third = new ListNode<Integer>(8);
 		ListNode<Integer> fourth = new ListNode<Integer>(11);
-		
 		
 		// Creating chain
 		singlyIntLinkedList.head.next = second;
