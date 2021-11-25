@@ -35,6 +35,40 @@ public class DoublyLinkedList<T> {
 	}
 	
 	
+	public void printForward() {
+		if (isEmpty()) {
+			System.out.println("null");
+			return;
+		}
+		
+		ListNode<T> currentNode = head;
+		
+		System.out.print("null -> ");
+		while (currentNode != null) {
+			System.out.print(currentNode.value + " -> ");
+			currentNode = currentNode.next;
+		}
+		System.out.println("null");
+	}
+	
+	
+	public void printBackward() {
+		if (isEmpty()) {
+			System.out.println("null");
+			return;
+		}
+		
+		ListNode<T> currentNode = tail;
+		
+		System.out.print("null -> ");
+		while (currentNode != null) {
+			System.out.print(currentNode.value + " -> ");
+			currentNode = currentNode.previous;
+		}
+		System.out.println("null");
+	}
+	
+	
 	public void insertFirst(T value) {
 		ListNode<T> newNode = new ListNode<>(value);
 		
@@ -67,6 +101,8 @@ public class DoublyLinkedList<T> {
 	
 	
 	
+	
+	
 	public static void main(String[] args) {
 		
 		// Doubly LinkedList
@@ -75,22 +111,46 @@ public class DoublyLinkedList<T> {
 		System.out.println("isEmpty: " + doublyIntLL.isEmpty());
 		System.out.println("length: " + doublyIntLL.length());
 		
+		// Chaining
+		ListNode<Integer> first = new ListNode<>(1);
+		ListNode<Integer> second = new ListNode<>(2);
+		ListNode<Integer> third = new ListNode<>(3);
+		ListNode<Integer> fourth = new ListNode<>(4);
+		doublyIntLL.head = first;
+		first.next = second;
+		second.previous = first;
+		second.next = third;
+		third.previous = second;
+		third.next = fourth;
+		fourth.previous = third;
+		doublyIntLL.tail = fourth;
+		doublyIntLL.length = 4;
+		
+		System.out.println("Head Node: " + doublyIntLL.head.value);
+		System.out.println("Tail Node: " + doublyIntLL.tail.value);
+		System.out.println("isEmpty: " + doublyIntLL.isEmpty());
+		System.out.println("Length: " + doublyIntLL.length());
+		
+		// Print list
+		System.out.print("Print forward: "); 
+		doublyIntLL.printForward();
+		System.out.print("Print backward: ");
+		doublyIntLL.printBackward();
+		
 		// Insert first
 		doublyIntLL.insertFirst(15);
 		doublyIntLL.insertFirst(25);
 		System.out.println("[Inserted 15 and 25 first]");
-		System.out.println("Head Node: " + doublyIntLL.head.value);
-		System.out.println("Tail Node: " + doublyIntLL.tail.value);
-		System.out.println("isEmpty: " + doublyIntLL.isEmpty());
-		System.out.println("length: " + doublyIntLL.length());
+		System.out.print("Print forward: "); 
+		doublyIntLL.printForward();
 		
 		// Insert last
 		doublyIntLL.insertLast(77);
 		doublyIntLL.insertLast(33);
 		System.out.println("[Inserted 77 and 33 last]");
-		System.out.println("Head Node: " + doublyIntLL.head.value);
-		System.out.println("Tail Node: " + doublyIntLL.tail.value);
-		System.out.println("length: " + doublyIntLL.length());
+		System.out.print("Print forward: "); 
+		doublyIntLL.printForward();
+		System.out.println("Length: " + doublyIntLL.length());
 	
 	}
 

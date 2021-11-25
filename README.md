@@ -16,3 +16,4 @@ TASKS:
 TASKS:
 - [2.1] Implement Doubly LinkedList with length and isEmpty functionalities
 - [2.2] Implement insertions (at First and Last node)
+- [2.3] Implement print list (in Forward and Backward direction) functionalities
