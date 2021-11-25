@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.NoSuchElementException;
+
 public class DoublyLinkedList<T> {
 	
 	private ListNode<T> head;
@@ -43,7 +45,6 @@ public class DoublyLinkedList<T> {
 		
 		ListNode<T> currentNode = head;
 		
-		System.out.print("null -> ");
 		while (currentNode != null) {
 			System.out.print(currentNode.value + " -> ");
 			currentNode = currentNode.next;
@@ -60,7 +61,6 @@ public class DoublyLinkedList<T> {
 		
 		ListNode<T> currentNode = tail;
 		
-		System.out.print("null -> ");
 		while (currentNode != null) {
 			System.out.print(currentNode.value + " -> ");
 			currentNode = currentNode.previous;
@@ -99,6 +99,42 @@ public class DoublyLinkedList<T> {
 	}
 	
 	
+	public ListNode<T> deleteFirst() {
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		
+		ListNode<T> deletePointer = head;
+		if (head == tail) {
+			tail = null;
+		} else {
+			head.next.previous = null;
+		}
+		
+		head = head.next;
+		deletePointer.next = null;
+		length--;
+		return deletePointer;
+	}
+	
+	
+	public ListNode<T> deleteLast() {
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		
+		ListNode<T> deletePointer = tail;
+		if (tail == head) {
+			head = null;
+		} else {
+			tail.previous.next = null;
+		}
+		
+		tail = tail.previous;
+		deletePointer.previous = null;
+		length--;
+		return deletePointer;
+	}
 	
 	
 	
@@ -143,6 +179,8 @@ public class DoublyLinkedList<T> {
 		System.out.println("[Inserted 15 and 25 first]");
 		System.out.print("Print forward: "); 
 		doublyIntLL.printForward();
+		System.out.println("Length: " + doublyIntLL.length());
+
 		
 		// Insert last
 		doublyIntLL.insertLast(77);
@@ -151,7 +189,20 @@ public class DoublyLinkedList<T> {
 		System.out.print("Print forward: "); 
 		doublyIntLL.printForward();
 		System.out.println("Length: " + doublyIntLL.length());
-	
+		
+		// Delete first
+		System.out.println("[Deleted first node]: " + doublyIntLL.deleteFirst().value);
+		System.out.print("Print forward: "); 
+		doublyIntLL.printForward();
+		System.out.println("Length: " + doublyIntLL.length());
+		
+		// Delete last
+		System.out.println("[Deleted last node]: " + doublyIntLL.deleteLast().value);
+		System.out.print("Print forward: "); 
+		doublyIntLL.printForward();
+		System.out.println("Length: " + doublyIntLL.length());
+
+		
 	}
 
 }
