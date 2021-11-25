@@ -12,6 +12,7 @@ TASKS:
 - [1.7] Implement LinkedList containing loop, loop detector and finder of the first node of the loop (using Floyd's Cycle Detection Algorithm)
 - [1.8] Implement remove loop functionality
 
-### 1: [DOUBLY LINKED LIST]
+### 2: [DOUBLY LINKED LIST]
 TASKS:
-- [2.1] Implement Doubly LinkedList with length, isEmpty and print functionalities
+- [2.1] Implement Doubly LinkedList with length and isEmpty functionalities
+- [2.2] Implement insertions (at First and Last node)
