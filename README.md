@@ -18,3 +18,8 @@ TASKS:
 - [2.2] Implement insertions (at First and Last node)
 - [2.3] Implement print list (in Forward and Backward direction) functionalities
 - [2.4] Implement deletions (First and Last node)
+
+### 3: [CIRCULAR SINGLY LINKED LIST]
+TASKS:
+- [3.1] Create Circular Singly LinkedList and implement isEmpty(), length() and printList()
+
