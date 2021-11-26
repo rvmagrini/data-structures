@@ -22,4 +22,6 @@ TASKS:
 ### 3: [CIRCULAR SINGLY LINKED LIST]
 TASKS:
 - [3.1] Create Circular Singly LinkedList and implement isEmpty(), length() and printList()
+- [3.2] Implement insertFirst() and insertLast()
+
 

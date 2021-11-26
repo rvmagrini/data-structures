@@ -43,14 +43,42 @@ public class CircularLinkedList<T> {
 	}
 	
 	
+	public void insertFirst(T value) {
+		ListNode<T> newNode = new ListNode<>(value);
+		
+		if (isEmpty()) {
+			last = newNode;
+		} else {
+			newNode.next = last.next;
+		}
+		
+		last.next = newNode;;
+		length++;
+	}
+	
+	
+	public void insertLast(T value) {
+		ListNode<T> newNode = new ListNode<>(value);
+		
+		if (isEmpty()) {
+			last = newNode;
+			last.next = last;
+		} else {
+			newNode.next = last.next;
+			last.next = newNode;
+			last = newNode;
+		}
+		
+		length++;
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {
 		
 		// Circular Singly LinkedList
 		CircularLinkedList<Integer> circularIntLL = new CircularLinkedList<>();
-		System.out.println("isEmpty: " + circularIntLL.isEmpty());
-		System.out.println("length: " + circularIntLL.length());
 		
 		ListNode<Integer> first = new ListNode<>(1);
 		ListNode<Integer> second = new ListNode<>(2);
@@ -66,7 +94,20 @@ public class CircularLinkedList<T> {
 		System.out.println("length: " + circularIntLL.length());
 		
 		// Print
-		circularIntLL.printList();	
+		circularIntLL.printList();
+		
+		// Insert first
+		circularIntLL.insertFirst(55);
+		circularIntLL.printList();
+		System.out.println("length: " + circularIntLL.length());
+		System.out.println("first: " + circularIntLL.last.next.value + " last: " + circularIntLL.last.value);
+
+		// Insert last
+		circularIntLL.insertLast(88);
+		circularIntLL.printList();
+		System.out.println("length: " + circularIntLL.length());
+		System.out.println("first: " + circularIntLL.last.next.value + " last: " + circularIntLL.last.value);
+
 	}
 
 }
