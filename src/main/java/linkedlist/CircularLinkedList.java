@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.NoSuchElementException;
+
 public class CircularLinkedList<T> {
 	
 	private ListNode<T> last;
@@ -33,6 +35,10 @@ public class CircularLinkedList<T> {
 	
 	
 	public void printList() {
+		if (isEmpty()) {
+			System.out.println("List is empty");
+			return;
+		}
 		ListNode<T> currentNode = last.next;
 		System.out.print("-> ");
 		while (currentNode != last) {
@@ -73,6 +79,67 @@ public class CircularLinkedList<T> {
 	}
 	
 	
+	public T deleteFirst() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("List is empty");
+		}
+		
+		ListNode<T> deletePointer = last.next;
+		if (last.next == last) {
+			last = null;
+		} else {
+			last.next = last.next.next;
+		}
+		
+		deletePointer.next = null;
+		length--;
+		return deletePointer.value;
+		
+	}
+	
+	
+	public T deleteLast() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("List is empty");
+		}
+		
+		ListNode<T> deletePointer = last.next;
+		if (last == last.next) {
+			last = null;
+		} else {
+			ListNode<T> previousNode = null;
+			while (deletePointer != last) {
+				previousNode = deletePointer;
+				deletePointer = deletePointer.next;
+			}
+			
+			previousNode.next = last.next;
+			last = previousNode;
+		}
+		
+		deletePointer.next = null;
+		length--;
+		return deletePointer.value;
+	}
+	
+	
+	@Override
+	public String toString() {
+		if (isEmpty()) {
+			return "List is empty";
+		}
+		
+		ListNode<T> currentNode = last.next;
+		String str = "CircularLinkedList: -> ";
+		while (currentNode != last) {
+			str += currentNode.value + " -> ";
+			currentNode = currentNode.next;
+		}
+		str += currentNode.value + " -> ";
+		return str;
+	}
+
+
 	
 	
 	public static void main(String[] args) {
@@ -90,24 +157,47 @@ public class CircularLinkedList<T> {
 		fourth.next = first;
 		circularIntLL.last = fourth;
 		circularIntLL.length = 4;
-		System.out.println("isEmpty: " + circularIntLL.isEmpty());
-		System.out.println("length: " + circularIntLL.length());
 		
 		// Print
 		circularIntLL.printList();
+		System.out.println("length " + circularIntLL.length() + " | firstNode " + circularIntLL.last.next.value + " | lastNode " + circularIntLL.last.value);
 		
 		// Insert first
+		System.out.print("[Inserted 55 and 33 first] ");
 		circularIntLL.insertFirst(55);
+		circularIntLL.insertFirst(33);
 		circularIntLL.printList();
-		System.out.println("length: " + circularIntLL.length());
-		System.out.println("first: " + circularIntLL.last.next.value + " last: " + circularIntLL.last.value);
-
+		System.out.println("length " + circularIntLL.length() + " | firstNode " + circularIntLL.last.next.value + " | lastNode " + circularIntLL.last.value);
+		
 		// Insert last
+		System.out.print("[Inserted 88 and 99 last] ");
 		circularIntLL.insertLast(88);
+		circularIntLL.insertLast(99);
 		circularIntLL.printList();
-		System.out.println("length: " + circularIntLL.length());
-		System.out.println("first: " + circularIntLL.last.next.value + " last: " + circularIntLL.last.value);
+		System.out.println("length " + circularIntLL.length() + " | firstNode " + circularIntLL.last.next.value + " | lastNode " + circularIntLL.last.value);
+		
+		// Delete first
+		System.out.print("[Deleted first node: " + circularIntLL.deleteFirst() + "] ");
+		circularIntLL.printList();
+		System.out.println("length " + circularIntLL.length() + " | firstNode " + circularIntLL.last.next.value + " | lastNode " + circularIntLL.last.value);
+		
+		// Delete last
+		System.out.print("[Deleted last node: " + circularIntLL.deleteLast() + "] ");
+		circularIntLL.printList();
+		System.out.println("length " + circularIntLL.length() + " | firstNode " + circularIntLL.last.next.value + " | lastNode " + circularIntLL.last.value);
+		
+		circularIntLL.deleteLast();
+		circularIntLL.deleteLast();
+		circularIntLL.deleteLast();
+		circularIntLL.deleteLast();
+		circularIntLL.deleteLast();
+		System.out.println("length " + circularIntLL.length() + " | firstNode " + circularIntLL.last.next.value + " | lastNode " + circularIntLL.last.value);
+		circularIntLL.deleteLast();
+		System.out.println(circularIntLL);
+		circularIntLL.printList();
+		System.out.println("length " + circularIntLL.length());
 
+		
 	}
 
 }

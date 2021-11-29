@@ -1,5 +1,8 @@
 # Data Structures
 ## Implementation of Data Structures
+- LinkedList: Singly, Doubly & Circular
+- Stack
+- Queue
 
 ### 1: [SINGLY LINKED LIST]
 TASKS:
@@ -23,5 +26,6 @@ TASKS:
 TASKS:
 - [3.1] Create Circular Singly LinkedList and implement isEmpty(), length() and printList()
 - [3.2] Implement insertFirst() and insertLast()
+- [3.3] Implement deleteFirst() and deleteLast()
 
 
