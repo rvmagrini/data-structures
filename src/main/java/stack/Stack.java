@@ -1,5 +1,7 @@
 package stack;
 
+import java.util.EmptyStackException;
+
 public class Stack<T> {
 	
 	private ListNode<T> top;
@@ -30,6 +32,35 @@ public class Stack<T> {
 	public boolean isEmpty() {
 		return length == 0;
 	}
+	
+	
+	public void push(T value) {
+		ListNode<T> newNode = new ListNode<>(value);
+		newNode.next = top;
+		top = newNode;
+		length++;
+	}
+	
+	
+	public T pop() {
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		}
+		
+		T topValue = top.value;
+		top = top.next;
+		length--;
+		return topValue;
+	}
+	
+	
+	public T peek() {
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		}
+		
+		return top.value;
+	}
 
 
 	@Override
@@ -56,23 +87,35 @@ public class Stack<T> {
 	public static void main(String[] args) {
 		
 		Stack<Integer> stack = new Stack<>();
-		ListNode<Integer> first = new ListNode<Integer>(1);
-		stack.top = first;
-		stack.length++;
-		ListNode<Integer> second = new ListNode<Integer>(2);
-		first.next = second;
-		stack.length++;
-		ListNode<Integer> third = new ListNode<Integer>(3);
-		second.next = third;
-		stack.length++;
-		ListNode<Integer> fourth = new ListNode<Integer>(4);
-		third.next = fourth;
-		stack.length++;
-		ListNode<Integer> fifth = new ListNode<Integer>(5);
-		fourth.next = fifth;
-		stack.length++;
 		System.out.println(stack);
+		
+		// Push
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		stack.push(4);
+		stack.push(5);
+		System.out.println("[Pushed]: 1 2 3 4 5");
+		System.out.println(stack);
+		
+		// Pop
+		System.out.println("[Popped]: " + stack.pop());
+		System.out.println(stack);
+		System.out.println("[Popped]: " + stack.pop());
+		System.out.println(stack);
+		
+		// Peek
+		System.out.println("[Peeked]: " + stack.peek());
+		System.out.println(stack);
+		
+		// Pop
+		System.out.println("[Popped]: " + stack.pop());
+		System.out.println(stack);
+		System.out.println("[Popped]: " + stack.pop());
+		System.out.println(stack);
+		System.out.println("[Popped]: " + stack.pop());
+		System.out.println(stack);
+		
 	}
-	
 
 }

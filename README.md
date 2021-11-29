@@ -31,3 +31,4 @@ TASKS:
 ### 4: [STACK]
 TASKS:
 - [4.1] Create Stack and implement isEmpty(), length() and toString()
+- [4.2] Implement push(), pop() and peek()
