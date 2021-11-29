@@ -28,4 +28,6 @@ TASKS:
 - [3.2] Implement insertFirst() and insertLast()
 - [3.3] Implement deleteFirst() and deleteLast()
 
-
+### 4: [STACK]
+TASKS:
+- [4.1] Create Stack and implement isEmpty(), length() and toString()
