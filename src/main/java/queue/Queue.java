@@ -1,10 +1,18 @@
 package queue;
 
+import java.util.NoSuchElementException;
+
 public class Queue<T> {
 	
 	private ListNode<T> front;
 	private ListNode<T> rear;
 	private int length;
+	
+	public Queue() {
+		this.front = null;
+		this.rear = null;
+		this.length = 0;
+	}
 	
 	
 	private static class ListNode<T> {
@@ -17,13 +25,6 @@ public class Queue<T> {
 	}
 	
 	
-	public Queue() {
-		front = null;
-		rear = null;
-		length = 0;
-	}
-	
-	
 	public boolean isEmpty() {
 		return length == 0;
 	}
@@ -31,6 +32,55 @@ public class Queue<T> {
 	
 	public int length() {
 		return length;
+	}
+	
+	
+	public void enqueue(T value) {
+		ListNode<T> newNode = new ListNode<>(value);
+		
+		if (isEmpty()) {
+			front = newNode;
+		} else {
+			rear.next = newNode;
+		}
+		
+		rear = newNode;
+		length++;
+	}
+	
+	
+	public T dequeue() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("Queue is empty");
+		}
+		
+		T frontNode = front.value;
+		front = front.next;
+		
+		if (front == null) {
+			rear = null;
+		}
+		
+		length--;
+		return frontNode;
+	}
+	
+	
+	public T first() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("Queue is empty");
+		}
+		
+		return front.value;
+	}
+	
+	
+	public T last() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("Queue is empty");
+		}
+		
+		return rear.value;
 	}
 	
 	
@@ -57,11 +107,37 @@ public class Queue<T> {
 		
 		Queue<Integer> queue = new Queue<>();
 		System.out.println(queue);
-		queue.front = new ListNode<Integer>(1);
-		queue.rear = new ListNode<Integer>(2);
-		queue.front.next = queue.rear;
-		queue.length = 2;
+		
+		// Enqueue
+		System.out.println("[Enqueued 1 2 3 4 5]");
+		queue.enqueue(1);
+		queue.enqueue(2);
+		queue.enqueue(3);
+		queue.enqueue(4);
+		queue.enqueue(5);
 		System.out.println(queue);
+		
+		// Dequeue
+		System.out.println("[Dequeued]: " + queue.dequeue());
+		System.out.println(queue);
+		System.out.println("[Dequeued]: " + queue.dequeue());
+		System.out.println("[Dequeued]: " + queue.dequeue());
+		System.out.println(queue);
+		System.out.println("[Dequeued]: " + queue.dequeue());
+		System.out.println("[Dequeued]: " + queue.dequeue());
+		System.out.println(queue);
+		
+		// Enqueue
+		queue.enqueue(5);
+		System.out.println(queue);
+		queue.enqueue(4);
+		System.out.println(queue);
+		queue.enqueue(3);
+		System.out.println(queue);
+		
+		// First and Last
+		System.out.println("First: " + queue.first());
+		System.out.println("Last: " + queue.last());
 		
 	}
 

@@ -36,3 +36,4 @@ TASKS:
 ### 5: [QUEUE]
 TASKS:
 - [5.1] Create Queue and implement isEmpty(), length() and toString()
+- [5.1] Implement enqueue(), dequeue(), first() and last()
